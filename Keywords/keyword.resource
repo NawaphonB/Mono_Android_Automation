@@ -31,7 +31,16 @@ Click login button
     Click Element    ${login_button_inside}
 
 verified login success
-    Wait Until Element Is Visible   ${choose_profile_manage}
+    Wait Until Element Is Visible   ${choose_profile_manage}    timeout=10s
+    Click Element    ${select_profile}
 
 verified login fail   
     Wait Until Element Is Visible    ${login_incorrect}
+
+click popup noti
+    Wait Until Element Is Visible    ${popup_noti}
+    Click Element    ${popup_noti}
+
+click allow noti
+    Wait Until Element Is Visible    ${allow_button}
+    Click Element    ${allow_button}
