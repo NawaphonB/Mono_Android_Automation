@@ -27,15 +27,20 @@ Input mono password
     Input Text  ${login_input_password}     ${password}
 
 Click login button
-    Wait Until Element Is Visible   ${login_button_inside}
+    Wait Until Element Is Visible   ${login_button_inside}    timeout=10s
     Click Element    ${login_button_inside}
 
 verified login success
     Wait Until Element Is Visible   ${choose_profile_manage}    timeout=10s
-    Click Element    ${select_profile}
+    Click Element    ${choose_profile_manage}
+    Click Element    ${back_profile _manage}
 
 verified login fail   
     Wait Until Element Is Visible    ${login_incorrect}
+
+Click skip go to home
+    Wait Until Element Is Visible    ${skip_login} 
+    Click Element    ${skip_login}   
 
 click popup noti
     Wait Until Element Is Visible    ${popup_noti}

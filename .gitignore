@@ -8,3 +8,60 @@ report.html
 *.jpg
 *.jpeg
 *.bmp
+# -------------------------------
+# Robot Framework output files
+# -------------------------------
+output.xml
+log.html
+report.html
+debug.log
+xunit.xml
+rerun.txt
+
+# -------------------------------
+# Robot Framework custom logs or reports
+# -------------------------------
+*.log
+*.html
+*.xml
+*.json
+*.csv
+
+# -------------------------------
+# Robot Framework temporary files
+# -------------------------------
+results/
+reports/
+logs/
+output/
+*.db
+*.db-journal
+
+# -------------------------------
+# Python and environment files
+# -------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+.venv/
+venv/
+env/
+ENV/
+.idea/
+.vscode/
+.DS_Store
+
+# -------------------------------
+# Robot IDE files
+# -------------------------------
+.settings/
+*.project
+*.classpath
+
+# -------------------------------
+# Jupyter / Miscellaneous
+# -------------------------------
+.ipynb_checkpoints/
+*.mp4

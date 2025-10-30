@@ -30,3 +30,8 @@ verified popup upgrade
 
 page package standard
     Wait Until Element Is Visible    ${package_standard}
+
+click see more
+    Wait Until Element Is Visible    ${seemore}
+    Click Button    ${seemore}
+    Wait Until Element Is Visible    ${enter_seemore}

@@ -1,22 +1,22 @@
 *** Settings ***
-Resource    ../import.robot
+Resource    ../../import.robot
 
 *** Test cases ***
 SP_001 ตรวจสอบว่าไม่สามารถดูถ่ายทอดสดฟุตบอล, ไฮไลท์ และการแข่งขันฟุตบอลย้อนหลังได้ หากไม่เข้าสู่ระบบ
     Open monomax app
-    Start Screen Recording
+    # Start Screen Recording
     Click skip go to home
     click popup noti
     click allow noti
     go to sport home
     Click match live
     verified popup login
-    Stop Screen Recording    filename=SP_001_No Login (Android ver.842) .mp4
+    # Stop Screen Recording    filename=SP_001_No Login (Android ver.842) .mp4
     Close Application
 
 SP_002 ตรวจสอบว่าไม่สามารถดูถ่ายทอดสดฟุตบอล, ไฮไลท์และการแข่งขันฟุตบอลย้อนหลังได้ หากไม่มีแพ็กเกจ
     Click login
-    Start Screen Recording
+    # Start Screen Recording
     login by username:${SP_002.username} and password:${SP_002.password}
     page select package
     verified login success
@@ -26,7 +26,7 @@ SP_002 ตรวจสอบว่าไม่สามารถดูถ่า�
     Click match live
     verified popup buy package
     page package standard
-    Stop Screen Recording    filename=SP_002_No Package (Android ver.842) .mp4
+    # Stop Screen Recording    filename=SP_002_No Package (Android ver.842) .mp4
     Close Application
 
 SP_003 ตรวจสอบว่าไม่สามารถดูถ่ายทอดสดฟุตบอล, ไฮไลท์และการแข่งขันฟุตบอลย้อนหลังได้ หากมีแพ็กเกจ starter แต่ยังไม่มีแพ็กเกจ standard
@@ -72,23 +72,34 @@ SP_005 ตรวจสอบว่าสามารถดูถ่ายทอ�
     Stop Screen Recording    filename=SP_005_Standard (Android ver.842) .mp4
     Close Application
 
+# SP_018 ตรวจสอบว่าหากวิดีโอไฮไลท์หรือการแข่งขันฟุตบอลย้อนหลัง มีวิดีโอมากกว่า 10 วิดีโอขึ้นไป จะแสดงปุ่มให้กดดูเพิ่มเติม
+#     Open monomax app
+#     # Start Screen Recording
+#     Click skip go to home
+#     click popup noti
+#     click allow noti
+#     go to sport home
+#     click see more ---มันต้องเลื่อนลง
+#     # Stop Screen Recording    filename=SP_001_No Login (Android ver.842) .mp4
+#     Close Application
+
 # SP_027 ตรวจสอบว่าเมื่อมีการอัดหน้าจอขณะเล่นถ่ายทอดสดหรือวิดีโอ จะขึ้นเป็นภาพสีดำ
 
 # SP_028 ตรวจสอบว่าเมื่อมีการแชร์หน้าจอ การถ่ายทอดสดหรือวิดีโอจะไม่แสดง
 
 # SP_029 ตรวจสอบว่าเมื่อมีการถูก Capture จะไม่สามารถจับภาพถ่ายทอดสดหรือวิดีโอได้
 
-# SP_030 ตรวจสอบการจำกัดจำนวนอุปกรณ์รับชม
-#     Click login
-#     login by username:${SP_004.username} and password:${SP_004.username}
-#     page select package
-#     verified login success
-#     click popup noti
-#     click allow noti
-#     go to sport home
-#     Click match live
-#     verified popup concurrent
-#     Close Application
+SP_030 ตรวจสอบการจำกัดจำนวนอุปกรณ์รับชม
+    Click login
+    login by username:${SP_004.username} and password:${SP_004.username}
+    page select package
+    verified login success
+    click popup noti
+    click allow noti
+    go to sport home
+    Click match live
+    verified popup concurrent
+    Close Application
 
 SP_036 ตรวจสอบว่าไม่สามารถดูถ่ายทอดสดฟุตบอล, Match upcoming และการแข่งขันฟุตบอลย้อนหลังได้ หากแพ็กเกจ standard (EPL) หมดอายุ
     Click login

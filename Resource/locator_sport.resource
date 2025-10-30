@@ -1,6 +1,6 @@
 *** Variables ***
 ${sport_home}    //android.widget.FrameLayout[@content-desc="Sport"]
-${match_live}    //Q0.V/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View[1]
+${match_live}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[1]
 ${popup_login}    //android.widget.Button[@resource-id="com.doonung.activity.staging:id/button_cta1"]
 ${popup_noti}    //android.widget.Button[@resource-id="android:id/button1"]
 ${allow_button}    //android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]
@@ -13,3 +13,5 @@ ${upcoming_hours}    //android.widget.TextView[@text="Hours"]
 ${upcoming_day}    //android.widget.TextView[@text="day"]
 ${upcoming_days}    //android.widget.TextView[@text="days"]
 ${player_live}    //android.widget.TextView[@text="LIVE"]
+${seemore}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[3]/android.widget.Button
+${enter_seemore}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[3]/android.view.View
