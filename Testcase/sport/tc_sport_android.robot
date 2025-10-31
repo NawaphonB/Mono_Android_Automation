@@ -6,8 +6,7 @@ SP_001 ตรวจสอบว่าไม่สามารถดูถ่า�
     Open monomax app
     # Start Screen Recording
     Click skip go to home
-    click popup noti
-    click allow noti
+    login home page
     go to sport home
     Click match live
     verified popup login
@@ -20,8 +19,7 @@ SP_002 ตรวจสอบว่าไม่สามารถดูถ่า�
     login by username:${SP_002.username} and password:${SP_002.password}
     page select package
     verified login success
-    click popup noti
-    click allow noti
+    login home page
     go to sport home
     Click match live
     verified popup buy package
@@ -35,8 +33,7 @@ SP_003 ตรวจสอบว่าไม่สามารถดูถ่า�
     login by username:${SP_003.username} and password:${SP_003.password}
     page select package
     verified login success
-    click popup noti
-    click allow noti
+    login home page
     go to sport home
     Click match live
     verified popup buy package
@@ -49,8 +46,7 @@ SP_004 ตรวจสอบว่าไม่สามารถดูถ่า�
     Start Screen Recording
     login by username:${SP_004.username} and password:${SP_004.password}
     verified login success
-    click popup noti
-    click allow noti
+    login home page
     go to sport home
     Click match live
     verified popup upgrade
@@ -63,8 +59,7 @@ SP_005 ตรวจสอบว่าสามารถดูถ่ายทอ�
     Start Screen Recording
     login by username:${SP_005.username} and password:${SP_005.password}
     verified login success
-    click popup noti
-    click allow noti
+    login home page
     go to sport home
     Click match live
     Player live
@@ -76,8 +71,7 @@ SP_005 ตรวจสอบว่าสามารถดูถ่ายทอ�
 #     Open monomax app
 #     # Start Screen Recording
 #     Click skip go to home
-#     click popup noti
-#     click allow noti
+#     login home page
 #     go to sport home
 #     click see more ---มันต้องเลื่อนลง
 #     # Stop Screen Recording    filename=SP_001_No Login (Android ver.842) .mp4
@@ -94,8 +88,7 @@ SP_030 ตรวจสอบการจำกัดจำนวนอุปก�
     login by username:${SP_004.username} and password:${SP_004.username}
     page select package
     verified login success
-    click popup noti
-    click allow noti
+    login home page
     go to sport home
     Click match live
     verified popup concurrent
@@ -107,8 +100,7 @@ SP_036 ตรวจสอบว่าไม่สามารถดูถ่า�
     login by username:${SP_036.username} and password:${SP_036.password}
     page select package
     verified login success
-    click popup noti
-    click allow noti
+    login home page
     go to sport home
     Click match live
     verified popup upgrade

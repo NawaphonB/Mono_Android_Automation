@@ -6,8 +6,7 @@ LiveTV_01 User ที่ไม่ได้ Login จะดูได้แค่�
     Open monomax app
     # Start Screen Recording
     Click skip go to home
-    click popup noti
-    click allow noti
+    login home page
     go to livetv
     click mono29
     Get Time    10s
@@ -22,8 +21,7 @@ LiveTV_02 User ที่ Login แต่ไม่มี Package จะดูไ�
     login by username:${LiveTV_02.username} and password:${LiveTV_02.password}
     page select package
     verified login success
-    click popup noti
-    click allow noti
+    login home page
     go to livetv
     click mono29
     Get Time    10s
@@ -39,8 +37,7 @@ LiveTV_03 User ที่ Login ด้วย Package Starter จะดูได�
     login by username:${LiveTV_03.username} and password:${LiveTV_03.password}
     page select package
     verified login success
-    click popup noti
-    click allow noti
+    login home page
     go to livetv
     click mono29
     Get Time    10s
@@ -55,8 +52,7 @@ LiveTV_04 User ที่ Login ด้วย Package Basic จะดูได้�
     # Start Screen Recording
     login by username:${LiveTV_04.username} and password:${LiveTV_04.password}
     verified login success
-    click popup noti
-    click allow noti
+    login home page
     go to livetv
     click mono29
     Get Time    10s
@@ -71,8 +67,7 @@ LiveTV_05 User ที่ Login ด้วย Package Standard จะดูช่�
     # Start Screen Recording
     login by username:${LiveTV_05.username} and password:${LiveTV_05.password}
     verified login success
-    click popup noti
-    click allow noti
+    login home page
     go to livetv
     click mono29
     Get Time    10s
@@ -90,8 +85,7 @@ LiveTV_07 User ที่ Login ด้วย Package Basic/Standard ที่ห�
     login by username:${LiveTV_07.username} and password:${LiveTV_07.password}
     page select package
     verified login success
-    click popup noti
-    click allow noti
+    login home page
     go to livetv
     click mono29
     Get Time    10s

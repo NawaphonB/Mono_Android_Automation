@@ -10,3 +10,7 @@ login by username:${username} and password:${password}
     Input mono username   ${username}
     Input mono password   ${password}
     Click login button
+
+login home page
+    click popup noti
+    click allow noti
