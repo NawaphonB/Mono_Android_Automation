@@ -3,6 +3,7 @@ Resource    ../../import.robot
 
 *** Test cases ***
 LiveTV_01 User ที่ไม่ได้ Login จะดูได้แค่ช่อง Tier 'ดูได้ทุกคน'
+    [Tags]    ready
     Open monomax app
     # Start Screen Recording
     Click skip go to home
@@ -16,6 +17,7 @@ LiveTV_01 User ที่ไม่ได้ Login จะดูได้แค่�
     Close Application
 
 LiveTV_02 User ที่ Login แต่ไม่มี Package จะดูได้แค่ช่อง Tier 'ดูได้ทุกคน'
+    [Tags]    ready
     Click login
     # Start Screen Recording
     login by username:${LiveTV_02.username} and password:${LiveTV_02.password}
@@ -31,7 +33,41 @@ LiveTV_02 User ที่ Login แต่ไม่มี Package จะดูไ�
     # Stop Screen Recording    filename=LiveTV_02_No Package (Android ver.842) .mp4
     Close Application
 
+LiveTV_02 Test
+    # [Tags]    ready
+    Click login
+    # Start Screen Recording
+    login by username:${LiveTV_02.username} and password:${LiveTV_02.password}
+    page select package
+    verified login success
+    login home page
+    # go to livetv
+    # click mono29
+    # Get Time    10s
+    # click sport
+    # verified popup buy package
+    Go To LiveTV
+    # ---- Check FreeTV ----
+    ${is_visible}=    Run Keyword And Return Status    Wait Until Element Is Visible    ${monomax1}    ${TIMEOUT}
+    IF    ${is_visible}
+        Scroll Element Into View    ${monomax1}
+        Click Element    ${monomax1}
+        Sleep    10s
+        ${popup_visible}=    Run Keyword And Return Status    Wait Until Element Is Visible    ${popup_buyPackage}    ${TIMEOUT}
+        IF    ${popup_visible}
+            Log To Console    FAIL: Popup appeared when watching Free TV
+        ELSE
+            Log To Console    PASS: Free TV playable without popup
+        END
+    ELSE
+        Log To Console    Channel Free TV not found
+    END
+    page package standard
+    # Stop Screen Recording    filename=LiveTV_02_No Package (Android ver.842) .mp4
+    Close Application
+
 LiveTV_03 User ที่ Login ด้วย Package Starter จะดูได้แค่ช่อง Tier 'ดูได้ทุกคน'
+    [Tags]    ready
     Click login
     # Start Screen Recording
     login by username:${LiveTV_03.username} and password:${LiveTV_03.password}
@@ -48,6 +84,7 @@ LiveTV_03 User ที่ Login ด้วย Package Starter จะดูได�
     Close Application
 
 LiveTV_04 User ที่ Login ด้วย Package Basic จะดูได้ทุกช่องยกเว้นช่อง Tier Standard
+    [Tags]    ready
     Click login
     # Start Screen Recording
     login by username:${LiveTV_04.username} and password:${LiveTV_04.password}
@@ -63,6 +100,7 @@ LiveTV_04 User ที่ Login ด้วย Package Basic จะดูได้�
     Close Application
 
 LiveTV_05 User ที่ Login ด้วย Package Standard จะดูช่อง LiveTV ได้ทุกช่อง
+    [Tags]    ready
     Click login
     # Start Screen Recording
     login by username:${LiveTV_05.username} and password:${LiveTV_05.password}
@@ -80,6 +118,7 @@ LiveTV_05 User ที่ Login ด้วย Package Standard จะดูช่�
 
 
 LiveTV_07 User ที่ Login ด้วย Package Basic/Standard ที่หมดอายุจะดูได้แค่ช่อง Tier 'ดูได้ทุกคน'
+    [Tags]    ready
     Click login
     # Start Screen Recording
     login by username:${LiveTV_07.username} and password:${LiveTV_07.password}

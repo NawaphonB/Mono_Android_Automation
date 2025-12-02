@@ -11,6 +11,8 @@ Open monomax app
     ...    appPackage=com.doonung.activity.staging    
     ...    appActivity=com.doonung.activity.mobile.ui.activity.MBSplashActivity
     ...    automationName=UiAutomator2
+    ...    uiautomator2ServerLaunchTimeout=60000
+    ...    uiautomator2ServerInstallTimeout=60000
 
 Go to login menu
     Wait Until Element Is Visible      ${login_button}

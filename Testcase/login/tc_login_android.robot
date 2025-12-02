@@ -22,7 +22,7 @@ LN_002 Success-Login success with mobile
     Close Application
 
 LN_0022 Success-Login success with username [Free tier]
-    [Tags]    success
+    # [Tags]    success
     Click login
     Start Screen Recording
     login by username:${LN_0022.username} and password:${LN_0022.password}
@@ -36,7 +36,7 @@ LN_0022 Success-Login success with username [Free tier]
 # LN_004 Success-Login OTP success with Mobile
 
 LN_005 Login with multiple package success
-    [Tags]    success
+    [Tags]    done
     Click login
     Start Screen Recording
     login by username:${LN_005.username} and password:${LN_005.password}
@@ -46,7 +46,7 @@ LN_005 Login with multiple package success
     verified login success
 
 LN_006 Login fail with E-mail password incorrect
-    [Tags]    fail
+    [Tags]    done
     Click login
     Start Screen Recording
     login by username:${LN_006.username} and password:${LN_006.password}
@@ -55,7 +55,7 @@ LN_006 Login fail with E-mail password incorrect
     Close Application
 
 LN_007 Fail-Login fail with mobile password incorrect
-    [Tags]    fail
+    [Tags]    done
     Click login
     Start Screen Recording
     login by username:${LN_007.username} and password:${LN_007.password}
@@ -64,6 +64,7 @@ LN_007 Fail-Login fail with mobile password incorrect
     Close Application
     
 LN_008 Fail-Login fail E-mail not found
+    [Tags]    done
     Click login
     Start Screen Recording
     login by username:${LN_008.username} and password:${LN_008.password}
@@ -72,7 +73,7 @@ LN_008 Fail-Login fail E-mail not found
     Close Application
 
 LN_009 Fail-Login fail mobile not found
-    [Tags]    fail
+    [Tags]    done
     Click login
     Start Screen Recording
     login by username:${LN_009.username} and password:${LN_009.password}

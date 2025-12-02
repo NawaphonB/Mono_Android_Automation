@@ -9,3 +9,4 @@ ${login_incorrect}     //android.widget.ImageView[@content-desc="warning"]
 ${login_changepackage}     //android.widget.TextView[@resource-id="com.doonung.activity.staging:id/mb_buy_package_title_text_view"]
 ${back_package}    //android.widget.ImageButton[@content-desc="Navigate up"]
 ${skip_login}    //android.widget.Button[@resource-id="com.doonung.activity.staging:id/mb_onboarding_skip_button"]
+${TIMEOUT}    10s
