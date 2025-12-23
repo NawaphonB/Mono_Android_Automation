@@ -51,3 +51,6 @@ click popup noti
 click allow noti
     Wait Until Element Is Visible    ${allow_button}
     Click Element    ${allow_button}
+
+Click hamburger menu    
+    Click Element    ${Click-hamburger-menu}

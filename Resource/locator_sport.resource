@@ -12,3 +12,5 @@ ${upcoming_days}    //android.widget.TextView[@text="days"]
 ${player_live}    //android.widget.TextView[@text="LIVE"]
 ${seemore}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[3]/android.widget.Button
 ${enter_seemore}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[3]/android.view.View
+${concurrent}    //android.widget.TextView[@resource-id="com.doonung.activity.staging:id/tv_error_title"]
+${close_concurrent}    //android.widget.Button[@resource-id="com.doonung.activity.staging:id/button_cta1"]

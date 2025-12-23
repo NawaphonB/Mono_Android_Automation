@@ -7,6 +7,7 @@ go to sport home
     Click Element    ${sport_home}
     
 Click match live
+    Wait Until Element Is Visible    ${match_live}
     Click Element   ${match_live}
 
 Player live
@@ -32,6 +33,10 @@ page package standard
     Wait Until Element Is Visible    ${package_standard}
 
 click see more
-    Wait Until Element Is Visible    ${seemore}
+    Wait Until Element Is Visible    ${seemore}    
     Click Button    ${seemore}
     Wait Until Element Is Visible    ${enter_seemore}
+
+verified popup concurrent
+    Wait Until Element Is Visible    ${concurrent}        timeout=10
+    Click Element    ${close_concurrent}

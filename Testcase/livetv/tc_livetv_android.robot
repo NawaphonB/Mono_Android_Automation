@@ -138,3 +138,8 @@ LiveTV_07 User ที่ Login ด้วย Package Basic/Standard ที่ห�
 
 
 # LiveTV_09 User ที่ Login ด้วย Package Standard ที่ยกเลิกแล้วยังไม่หมดอายุจะดูช่อง LiveTV ได้ทุกช่อง
+
+# LiveTV_15	User ที่ไม่มี Package สามารถซื้อ Package Basic จาก LiveTV ได้สำเร็จ
+# LiveTV_16	User ที่ไม่มี Package สามารถซื้อ Package Standard จาก LiveTV ได้สำเร็จ
+# LiveTV_17	User ที่มี Package Basic สามารถซื้อ Package Standard จากหน้า LiveTV ได้สำเร็จ
+# LiveTV_18	เมื่อ User ทำการ Cancel การซื้อ Package ลูกค้าต้องไม่สามารถดูช่องใน Tier Package นั้นได้

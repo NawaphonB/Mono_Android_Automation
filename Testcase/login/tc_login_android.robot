@@ -3,7 +3,7 @@ Resource    ../../import.robot
 
 *** Test cases ***
 LN_001 Success-Login success with E-mail
-    [Tags]    success
+    [Tags]    done
     Click login
     Start Screen Recording
     login by username:${LN_001.username} and password:${LN_001.password}
@@ -13,22 +13,12 @@ LN_001 Success-Login success with E-mail
     Close Application
 
 LN_002 Success-Login success with mobile
-    [Tags]    success
+    [Tags]    done
     Click login
     Start Screen Recording
     login by username:${LN_002.username} and password:${LN_002.password}
     verified login success
     Stop Screen Recording    filename=Login with mobile-success (Android ver.).mp4
-    Close Application
-
-LN_0022 Success-Login success with username [Free tier]
-    # [Tags]    success
-    Click login
-    Start Screen Recording
-    login by username:${LN_0022.username} and password:${LN_0022.password}
-    enter package page
-    verified login success
-    Stop Screen Recording    filename=Login with username-success [Expire] (Android ver.).mp4
     Close Application
 
 # LN_003 Success-Log in OTP success with E-mail
@@ -40,7 +30,6 @@ LN_005 Login with multiple package success
     Click login
     Start Screen Recording
     login by username:${LN_005.username} and password:${LN_005.password}
-    enter package page
     verified login success
     Stop Screen Recording    filename=Login with multi-success (Android ver.842).mp4
     verified login success

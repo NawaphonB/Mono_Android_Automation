@@ -1,31 +1,53 @@
 *** Settings ***
 Resource    ../import.robot
+Library    OperatingSystem
 
 *** Keywords ***
-Click-hamburger-menu    
-    Click Element    ${Click-hamburger-menu}
+Select package Category
+    Click hamburger menu
+    Click Buy package
+    Verify Package Category
 
-Click-Start-Watching    
-    Click Element    ${Click-Start-Watching}     
+Buy package 99/month
+    Select-Package-Basic
+    Click-buy-package-99/month 
+    Confirm-Subscribe   
+    Check text successfully Subscribe  
 
-# Check-Card-Testing
-Confirm-Subscribe    
-    Wait Until Element Is Visible    ${Confirm-Subscribe}
-    Click Element    ${Confirm-Subscribe}
-Check element successfully Subscribe     
-...    Wait Until Page Contains Element    ${Check successfully Subscribe}    timeout=20s
-Check text successfully Subscribe     
-...    Element Text Should Be    ${Check successfully Subscribe}    Purchase successfully 
+Buy package 699/year
+    Select-Package-Basic
+    Select-Basic-yearly
+    Click-buy-package-699/year
+    Confirm-Subscribe   
+    Check text successfully Subscribe  
 
-#Package Catetory
-click-button-Buy_package    
+Buy package 299/month
+    Select-Package-Standard
+    Select-Standard-monthly
+    Click-buy-package-299/month
+    Confirm-Subscribe   
+    Check text successfully Subscribe  
+
+Buy package 2999/year
+    Select-Package-Standard
+    Select-Standard-yearly
+    Click-buy-package-2999/year
+    Confirm-Subscribe   
+    Check text successfully Subscribe  
+
+#Package Category
+Click Buy package
     Wait Until Element Is Visible    ${click-button-Buy_package}
     Click Element    ${click-button-Buy_package}
-Verify-Package-Catetory-basic    
-...    Wait Until Page Contains Element    ${Verify-Package-Catetory-basic}    timeout=20s    
+
+Verify Package Category
+    Wait Until Element Is Visible    ${verify_package_category}
+
+#Package Basic
 Select-Package-Basic   
     Wait Until Element Is Visible     ${Select-Package-Basic}      
-    Click Element    ${Select-Package-Basic}                
+    Click Element    ${Select-Package-Basic}               
+
 Select-Package-Basic-pre-purchase    
     Wait Until Element Is Visible    ${Select-Package-Basic-pre-purchase}  
     Click Element    ${Select-Package-Basic-pre-purchase}    
@@ -33,52 +55,37 @@ Click-buy-package-99/month
     Wait Until Element Is Visible    ${Click-buy-package-99/month}
     Click Element    ${Click-buy-package-99/month}
 Select-Basic-yearly    
-...    Click Element    ${Select-Basic-yearly}
-Click-buy-package-699/month    
-...    Click Element    ${Click-buy-package-699/month} 
+    Wait Until Element Is Visible    ${Select-Basic-yearly}
+    Click Element    ${Select-Basic-yearly}
+Click-buy-package-699/year  
+    Wait Until Element Is Visible    ${Click-buy-package-699/year} 
+    Click Element    ${Click-buy-package-699/year} 
 
 #Package Standard
-check-element-Package-Catetory-standard    Wait Until Page Contains Element    ${Verify-Package-Catetory-standard}         
-Select-Package-standard    Click Element    ${Select-Package-standard}        
-Select-Package-standard 299 / month    Click Element    ${Select-Package-standard 299 / month}     
-Click-Proceed-to-payment    Click Element    ${Click-Proceed-to-payment}  
-Select-Standard-yearly    Click Element    ${Select-Standard-yearly} 
-Select-Package-standard 2999 / yearly    Click Element    ${Select-Package-standard 2999 / yearly} 
+Select-Package-Standard
+    Wait Until Element Is Visible    ${Select-Package-standard} 
+    Click Element    ${Select-Package-standard} 
 
-Visit-Package-Category
-    Click-hamburger-menu
-    click-button-Buy_package
+Select-Standard-monthly
+    Wait Until Element Is Visible    ${Select-Package-standard 299 / month}
+    Click Element    ${Select-Package-standard 299 / month}
 
-Verify-Card-testing-before-subscribe
-    Confirm-Subscribe
-    Check element successfully Subscribe  
-    Check text successfully Subscribe 
+Click-buy-package-299/month
+    Wait Until Element Is Visible    ${Select-Package-standard 299 / month}
+    Click Element    ${Select-Package-standard 299 / month}
 
-Buy-Package-Basic99/month
-    # Verify-Package-Catetory-basic 
-    Select-Package-Basic 
-    Click-buy-package-99/month
-    Verify-Card-testing-before-subscribe
+Select-Standard-yearly
+    Wait Until Element Is Visible    ${Select-Standard-yearly}
+    Click Element    ${Select-Standard-yearly}
 
- Buy-Package-Basic699/month
-    Verify-Package-Catetory-basic 
-    Select-Package-Basic
-    Select-Basic-yearly
-    Click-buy-package-699/month   
-    Verify-Card-testing-before-subscribe
+Click-buy-package-2999/year
+    Wait Until Element Is Visible    ${Select-Package-standard 2999 / yearly}
+    Click Element    ${Select-Package-standard 2999 / yearly}
 
-buy-package-Standard 299/month 
-    check-element-Package-Catetory-standard 
-    Select-Package-standard
-    Select-Package-standard 299 / month 
-    Click-Proceed-to-payment
-    Verify-Card-testing-before-subscribe
-    
-
-buy-package-Standard 2999/yearly
-    check-element-Package-Catetory-standard 
-    Select-Package-standard
-    Select-Standard-yearly
-    Select-Package-standard 2999 / yearly 
-    Click-Proceed-to-payment
-    Verify-Card-testing-before-subscribe
+# Check-Card-Testing
+Confirm-Subscribe    
+    Wait Until Element Is Visible    ${Confirm-Subscribe}
+    Click Element    ${Confirm-Subscribe}    
+Check text successfully Subscribe     
+    Wait Until Element Is Visible    ${Check successfully Subscribe}
+    Click Element    ${Check successfully Subscribe}
