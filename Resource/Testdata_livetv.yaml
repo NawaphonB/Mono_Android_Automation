@@ -1,21 +1,67 @@
-URL : https://staging.monomax.me/
+# URL : https://staging.monomax.me/
+
+# LiveTV_02:
+#   username : livetvresult01
+#   password : P@ssw0rd1234
+
+# LiveTV_03:
+#   username : livetvresult04
+#   password : P@ssw0rd1234
+
+# LiveTV_04:
+#   username : livetvresult02
+#   password : P@ssw0rd1234
+
+# LiveTV_05:
+#   username : livetvresult03
+#   password : P@ssw0rd1234
+
+# LiveTV_06:
+#   username : monotestset18
+#   password : 123456
+
+# LiveTV_07:
+#   username : livetvresult05
+#   password : P@ssw0rd1234
+
+# LiveTV_08:
+#   username : monotestset10
+#   password : 123456
+
+# LiveTV_09:
+#   username : monotestset16
+#   password : 123456
+
+URL : https://monomax.me/
 
 LiveTV_02:
-  username : livetvresult01
+  username : monoprodtestlive01
   password : P@ssw0rd1234
 
 LiveTV_03:
-  username : livetvresult04
+  username : Monoprodtest15
   password : P@ssw0rd1234
 
 LiveTV_04:
-  username : livetvresult02
-  password : P@ssw0rd1234
+  username : nowtest02
+  password : 123456
 
 LiveTV_05:
-  username : livetvresult03
-  password : P@ssw0rd1234
+  username : phonetest02
+  password : 123456
+
+LiveTV_06:
+  username : monomaxtest05@gmail.com
+  password : bookiko
 
 LiveTV_07:
-  username : livetvresult05
-  password : P@ssw0rd1234
+  username : phathtest01
+  password : 123456
+
+LiveTV_08:
+  username : 
+  password : 
+
+LiveTV_09:
+  username : 
+  password : 

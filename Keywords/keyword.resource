@@ -6,10 +6,11 @@ Open monomax app
     Open Application    
     ...    http://127.0.0.1:4723
     ...    platformName=Android    
-    ...    platformVersion=16.0    
+    ...    platformVersion=11.0    
     ...    deviceName=Test Device    
-    ...    appPackage=com.doonung.activity.staging    
-    ...    appActivity=com.doonung.activity.mobile.ui.activity.MBSplashActivity
+    # ...    appPackage=com.doonung.activity.staging    
+    ...    appPackage=com.doonung.activity
+    ...    appActivity=com.doonung.activity.mobile.ui.activity.splash.MBSplashActivity
     ...    automationName=UiAutomator2
     ...    uiautomator2ServerLaunchTimeout=60000
     ...    uiautomator2ServerInstallTimeout=60000
@@ -35,7 +36,7 @@ Click login button
 verified login success
     Wait Until Element Is Visible   ${choose_profile_manage}    timeout=10s
     Click Element    ${choose_profile_manage}
-    Click Element    ${back_profile _manage}
+    Click Element    ${back}
 
 verified login fail   
     Wait Until Element Is Visible    ${login_incorrect}

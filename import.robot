@@ -1,5 +1,6 @@
 *** Settings ***
 Library     AppiumLibrary
+Library     JSONLibrary
 Resource    ./Keywords/keyword.resource
 Resource    ./Keywords/login.resource
 Resource    ./Keywords/sport.resource

@@ -13,4 +13,4 @@ login by username:${username} and password:${password}
 
 login home page
     click popup noti
-    click allow noti
+    # click allow noti

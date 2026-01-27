@@ -8,6 +8,12 @@ Select package Category
     Click Buy package
     Verify Package Category
 
+Renew package
+    Click hamburger menu
+    Click Settings
+    Click Account
+    Renew
+
 Buy package 99/month
     Select-Package-Basic
     Click-buy-package-99/month 
@@ -42,6 +48,10 @@ Click Buy package
 
 Verify Package Category
     Wait Until Element Is Visible    ${verify_package_category}
+
+All Package
+    Wait Until Element Is Visible    ${all_package}
+    Click Element    ${all_package}
 
 #Package Basic
 Select-Package-Basic   
@@ -89,3 +99,18 @@ Confirm-Subscribe
 Check text successfully Subscribe     
     Wait Until Element Is Visible    ${Check successfully Subscribe}
     Click Element    ${Check successfully Subscribe}
+
+click back standard
+    Click Element    ${back}
+
+Click Settings
+    Wait Until Element Is Visible    ${click_settings}
+    Click Element    ${click_settings}
+
+Click Account
+    Wait Until Element Is Visible    ${click_account}
+    Click Element    ${click_account}
+
+Renew
+    Wait Until Element Is Visible    ${renew}
+    Click Element    ${renew}
