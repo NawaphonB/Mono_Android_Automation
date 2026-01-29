@@ -9,6 +9,7 @@ SP_001 ตรวจสอบว่าไม่สามารถดูถ่า�
     Click skip go to home
     login home page
     go to sport home
+    scroll down to bottom
     Click match live
     verified popup login
     # Stop Screen Recording    filename=SP_001_No Login (Android ver.842) .mp4
@@ -23,6 +24,7 @@ SP_002 ตรวจสอบว่าไม่สามารถดูถ่า�
     verified login success
     login home page
     go to sport home
+    scroll down to bottom
     Click match live
     verified popup buy package
     page package standard
@@ -38,6 +40,7 @@ SP_003 ตรวจสอบว่าไม่สามารถดูถ่า�
     verified login success
     login home page
     go to sport home
+    scroll down to bottom
     Click match live
     verified popup buy package
     page package standard
@@ -52,6 +55,7 @@ SP_004 ตรวจสอบว่าไม่สามารถดูถ่า�
     verified login success
     login home page
     go to sport home
+    scroll down to bottom
     Click match live
     verified popup upgrade
     page package standard
@@ -66,6 +70,7 @@ SP_005 ตรวจสอบว่าสามารถดูถ่ายทอ�
     verified login success
     login home page
     go to sport home
+    scroll down to bottom
     Click match live
     Player live
     Sleep    10s

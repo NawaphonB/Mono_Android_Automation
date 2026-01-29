@@ -5,13 +5,14 @@ Resource    ../../import.robot
  PK_004 สมัคร Basic 99 รายเดือนแบบ Recurring ด้วย In app purchase สำเร็จ
     [Tags]    done
     Click login
-    # Start Screen Recording
+    Start Screen Recording
     login by username:${PK_004.username} and password:${PK_004.password}
     page select package
     verified login success
     login home page
     Select package Category
     Buy package 99/month
+    Stop Screen Recording    filename=PK_004.mp4
     Close Application
 
 PK_005 สมัคร Basic 699 รายปีแบบ Recurring ด้วย In app purchase สำเร็จ

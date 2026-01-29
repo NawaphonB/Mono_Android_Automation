@@ -9,7 +9,6 @@ LiveTV_01 User ที่ไม่ได้ Login จะดูได้แค่�
     Click skip go to home
     login home page
     go to livetv
-    click mono29
     Get Time    10s
     click sport
     verified popup login
@@ -41,8 +40,6 @@ LiveTV_03 User ที่ Login ด้วย Package Starter จะดูได�
     verified login success
     login home page
     go to livetv
-    scroll down livetv
-    click mono29
     Get Time    10s
     click sport
     verified popup buy package
@@ -58,8 +55,6 @@ LiveTV_04 User ที่ Login ด้วย Package Basic จะดูได้�
     verified login success
     login home page
     go to livetv
-    scroll down sport
-    click mono29
     Get Time    10s
     click sport
     verified popup upgrade
@@ -75,11 +70,9 @@ LiveTV_05 User ที่ Login ด้วย Package Standard จะดูช่�
     verified login success
     login home page
     go to livetv
-    scroll down sport
-    click mono29
-    Get Time    10s
+    Set Appium Timeout    5s
     click sport
-    Get Time    10s
+    Set Appium Timeout    5s
     # Stop Screen Recording    filename=LiveTV_05_Standard (Android ver.842) .mp4
     Close Application
 
@@ -92,8 +85,6 @@ LiveTV_06 User ที่ Login ด้วย Package Basic/Standard ที่ย�
     verified login success
     login home page
     go to livetv
-    scroll down sport
-    click mono29
     Get Time    10s
     click sport
     verified popup buy package
@@ -110,8 +101,6 @@ LiveTV_07 User ที่ Login ด้วย Package Basic/Standard ที่ห�
     verified login success
     login home page
     go to livetv
-    scroll down sport
-    click mono29
     Get Time    10s
     click sport
     verified popup buy package
@@ -127,7 +116,6 @@ LiveTV_08 User ที่ Login ด้วย Package Basic ที่ยกเล�
     verified login success
     login home page
     go to livetv
-    click mono29
     Get Time    10s
     click sport
     verified popup upgrade
@@ -143,7 +131,6 @@ LiveTV_09 User ที่ Login ด้วย Package Standard ที่ยกเ�
     verified login success
     login home page
     go to livetv
-    click mono29
     Get Time    10s
     click sport
     Get Time    10s
@@ -151,7 +138,7 @@ LiveTV_09 User ที่ Login ด้วย Package Standard ที่ยกเ�
     Close Application
 
 LiveTV_15 User ที่ไม่มี Package สามารถซื้อ Package Basic จาก LiveTV ได้สำเร็จ
-    [Tags]    WIP
+    [Tags]    done
     Click login
     # Start Screen Recording
     login by username:${LiveTV_02.username} and password:${LiveTV_02.password}
@@ -168,9 +155,9 @@ LiveTV_15 User ที่ไม่มี Package สามารถซื้อ P
     Close Application
 
 LiveTV_16 User ที่ไม่มี Package สามารถซื้อ Package Standard จาก LiveTV ได้สำเร็จ
-    [Tags]    WIP
+    [Tags]    done
     Click login
-    # Start Screen Recording
+    Start Screen Recording
     login by username:${LiveTV_02.username} and password:${LiveTV_02.password}
     page select package
     verified login success
@@ -179,7 +166,7 @@ LiveTV_16 User ที่ไม่มี Package สามารถซื้อ P
     click sport
     verified popup buy package
     Select-Package-standard  
-    # Stop Screen Recording    filename=LiveTV_07_Expire (Android ver.842) .mp4
+    Stop Screen Recording    filename=LiveTV_16 (Android ver.8.9.1 (890)) .mp4
     Close Application
 
 LiveTV_17 User ที่มี Package Basic สามารถซื้อ Package Standard จากหน้า LiveTV ได้สำเร็จ

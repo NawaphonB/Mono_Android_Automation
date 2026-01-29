@@ -17,10 +17,9 @@
 
 # internal
 ${sport_home}    //android.widget.FrameLayout[@content-desc="Sport"]
-${match_live}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[2]/android.view.View[1]
+${match_live}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[6]/android.view.View[1]
 ${popup_noti}    //android.widget.Button[@resource-id="android:id/button1"]
 ${allow_button}    //android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]
-${select_package}    //android.widget.TextView[@resource-id="com.doonung.activity:id/mb_buy_package_title_text_view"]
 ${upcoming_hours}    //android.widget.TextView[@text="Hours"]
 ${upcoming_day}    //android.widget.TextView[@text="day"]
 ${upcoming_days}    //android.widget.TextView[@text="days"]

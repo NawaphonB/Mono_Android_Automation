@@ -36,7 +36,7 @@ ${package_standard}    //android.widget.TextView[@resource-id="com.doonung.activ
 # hamburger-menu
 ${Click-hamburger-menu}    //android.widget.ImageButton[@content-desc="open drawer"]
 ${Click-button-Buy_package}    //android.widget.TextView[@resource-id="com.doonung.activity:id/cell_mb_side_menu_item_text_view" and @text="Buy package"]
-${verify_package_category}    //android.widget.TextView[@resource-id="com.doonung.activity:id/mb_buy_package_title_text_view"]
+${package_category}    //android.widget.TextView[@resource-id="com.doonung.activity:id/mb_buy_package_title_text_view"]
 #package Basic
 ${Verify-Package-Catetory-basic}    //android.widget.TextView[@resource-id="com.doonung.activity:id/cell_mb_title_text_view" and @text="เบสิก"]
 ${Select-Package-Basic}    //android.widget.TextView[@resource-id="com.doonung.activity:id/cell_mb_title_text_view" and @text="Basic"]

@@ -1,27 +1,53 @@
-URL : https://staging.monomax.me/
+# URL : https://staging.monomax.me/
+
+# SP_002:
+#   username : livetvresult01
+#   password : P@ssw0rd1234
+
+# SP_003:
+#   username : livetvresult04
+#   password : P@ssw0rd1234
+
+# SP_004:
+#   username : livetvresult02
+#   password : P@ssw0rd1234
+
+# SP_005:
+#   username : livetvresult05
+#   password : P@ssw0rd1234
+
+# SP_030:
+#   username : testfreetier05
+#   password : 123456
+
+# SP_036:
+#   username : livetvresult03
+#   password : P@ssw0rd1234
+
+
+
+URL : https://monomax.me/
 
 SP_002:
-  username : livetvresult01
+  username : monoprodtestlive01
   password : P@ssw0rd1234
 
 SP_003:
-  username : livetvresult04
+  username : Monoprodtest15
   password : P@ssw0rd1234
 
 SP_004:
-  username : livetvresult02
-  password : P@ssw0rd1234
+  username : nowtest02
+  password : 123456
 
 SP_005:
-  username : livetvresult05
-  password : P@ssw0rd1234
+  username : phathtest02
+  password : 123456
 
 SP_030:
-  username : testfreetier05
+  username : phathtest01
   password : 123456
 
 SP_036:
-  username : livetvresult03
+  username : monoprodtestlive01
   password : P@ssw0rd1234
-
-  
