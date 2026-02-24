@@ -1,54 +1,7 @@
-# URL : https://staging.monomax.me/
-
-# PK_004:
-#   username : testpackage04
-#   password : 123456
-
-# PK_005:
-#   username : testpackage05
-#   password : 123456  
-
-# PK_030:
-#   username : testpackage30
-#   password : 123456
-
-# PK_031:
-#   username : testpackage31
-#   password : 123456
-
-# PK_043:
-#   username : testpackage43
-#   password : 123456
-
-# PK_044:
-#   username : testpackage44
-#   password : 123456
-
-# PK_045:
-#   username : testpackage45
-#   password : 123456
-
-# PK_046:
-#   username : testpackage46
-#   password : 123456
-
-# PK_053:
-#   username : monotestset26
-#   password : 123456
-
-# PK_054:
-#   username : testpackage54
-#   password : 123456
-
-# PK_055:
-#   username : testpackage55
-#   password : 123456
-
-
-URL : https://monomax.me/
+URL : https://staging.monomax.me/
 
 PK_004:
-  username : piyab67030@gxuzi.com
+  username : testpackage04
   password : 123456
 
 PK_005:
@@ -90,3 +43,50 @@ PK_054:
 PK_055:
   username : testpackage55
   password : 123456
+
+
+# URL : https://monomax.me/
+
+# PK_004:
+#   username : piyab67030@gxuzi.com
+#   password : 123456
+
+# PK_005:
+#   username : testpackage05
+#   password : 123456  
+
+# PK_030:
+#   username : testpackage30
+#   password : 123456
+
+# PK_031:
+#   username : testpackage31
+#   password : 123456
+
+# PK_043:
+#   username : testpackage43
+#   password : 123456
+
+# PK_044:
+#   username : testpackage44
+#   password : 123456
+
+# PK_045:
+#   username : testpackage45
+#   password : 123456
+
+# PK_046:
+#   username : testpackage46
+#   password : 123456
+
+# PK_053:
+#   username : monotestset26
+#   password : 123456
+
+# PK_054:
+#   username : testpackage54
+#   password : 123456
+
+# PK_055:
+#   username : testpackage55
+#   password : 123456

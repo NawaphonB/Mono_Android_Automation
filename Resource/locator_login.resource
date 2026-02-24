@@ -10,7 +10,7 @@
 # ${skip_login}    //android.widget.Button[@resource-id="com.doonung.activity.staging:id/mb_onboarding_skip_button"]
 # ${TIMEOUT}    10s
 
-# internal
+# # internal
 ${login_button}     //android.widget.Button[@resource-id="com.doonung.activity:id/mb_onboarding_login_button"]
 ${login_input_username}     //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.widget.EditText[1]
 ${login_input_password}     //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.widget.EditText[2]

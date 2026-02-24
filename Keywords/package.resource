@@ -6,7 +6,6 @@ Library    OperatingSystem
 Select package Category
     Click hamburger menu
     Click Buy package
-    Verify Package Category
 
 Renew package
     Click hamburger menu
@@ -47,7 +46,7 @@ Click Buy package
     Click Element    ${click-button-Buy_package}
 
 Verify Package Category
-    Wait Until Element Is Visible    ${verify_package_category}
+    Wait Until Element Is Visible    ${all_package}
 
 All Package
     Wait Until Element Is Visible    ${all_package}

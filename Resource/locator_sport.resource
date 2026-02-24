@@ -17,7 +17,7 @@
 
 # internal
 ${sport_home}    //android.widget.FrameLayout[@content-desc="Sport"]
-${match_live}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[6]/android.view.View[1]
+${match_live}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[5]/android.view.View[1]
 ${popup_noti}    //android.widget.Button[@resource-id="android:id/button1"]
 ${allow_button}    //android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]
 ${upcoming_hours}    //android.widget.TextView[@text="Hours"]
