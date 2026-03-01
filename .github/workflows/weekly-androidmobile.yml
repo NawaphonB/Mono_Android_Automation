@@ -2,41 +2,98 @@ name: Weekly Robot Android Mobile Automation
 
 on:
   schedule:
-    # - cron: '0 2 * * 1'   # ทุกวันจันทร์ 09:00 ไทย
-    - cron: '*/5 * * * *'   #รันทุก 5 นาที 
+    - cron: '*/5 * * * *'   # รันทุก 5 นาที (UTC)
   workflow_dispatch:
 
 jobs:
-
   android-test:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      # -------------------------
+      # Checkout
+      # -------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
+      # -------------------------
+      # Setup Node + Appium
+      # -------------------------
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
       - name: Install Appium
-        run: npm install -g appium
+        run: |
+          npm install -g appium
+          appium -v
 
-      - name: Install Python
+      # -------------------------
+      # Setup Python
+      # -------------------------
+      - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Run Android Test
+      - name: Install Python dependencies
         run: |
-          robot -d results Testcase/ || echo "TEST_STATUS=FAILED" >> $GITHUB_ENV
-          echo "TEST_STATUS=PASSED" >> $GITHUB_ENV
+          pip install -r requirements.txt
+          pip install robotframework
 
+      # -------------------------
+      # Enable KVM (for emulator)
+      # -------------------------
+      - name: Enable KVM
+        run: |
+          echo 'KVM_GROUP=$(getent group kvm | cut -d: -f3)' >> $GITHUB_ENV
+          sudo chown root:kvm /dev/kvm
+          sudo chmod 660 /dev/kvm
+
+      # -------------------------
+      # Start Android Emulator
+      # -------------------------
+      - name: Start Android Emulator
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: default
+          arch: x86_64
+          profile: Nexus 6
+          script: echo "Emulator started"
+
+      # -------------------------
+      # Start Appium Server
+      # -------------------------
+      - name: Start Appium Server
+        run: |
+          appium > appium.log 2>&1 &
+          sleep 15
+
+      # -------------------------
+      # Run Robot Test
+      # -------------------------
+      - name: Run Android Test
+        continue-on-error: true
+        run: |
+          robot -d results Testcase/
+
+      # -------------------------
+      # Send Webhook (อ่าน output.xml เอง)
+      # -------------------------
       - name: Send Webhook
+        if: always()
         run: python send_webhook.py
         env:
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-          TEST_STATUS: ${{ env.TEST_STATUS }}
+
+      # -------------------------
+      # Upload Report
+      # -------------------------
+      - name: Upload Robot Report
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: robot-report
+          path: results/
