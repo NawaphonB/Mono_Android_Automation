@@ -2,7 +2,8 @@ name: Weekly Robot Android Mobile Automation
 
 on:
   schedule:
-    - cron: '0 2 * * 1'   # ทุกวันจันทร์ 09:00 ไทย
+    # - cron: '0 2 * * 1'   # ทุกวันจันทร์ 09:00 ไทย
+    - cron: '*/5 * * * *'   #รันทุก 5 นาที 
   workflow_dispatch:
 
 jobs:
