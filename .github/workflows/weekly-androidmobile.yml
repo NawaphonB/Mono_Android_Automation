@@ -1,0 +1,74 @@
+name: Weekly Robot Android Mobile Automation
+
+on:
+  schedule:
+    - cron: '0 2 * * 1'   # ทุกวันจันทร์ 09:00 ไทย
+  workflow_dispatch:
+
+jobs:
+
+  android-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Appium
+        run: npm install -g appium
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run Android Test
+        run: |
+          robot -d results Testcase/android || echo "TEST_STATUS=FAILED" >> $GITHUB_ENV
+          echo "TEST_STATUS=PASSED" >> $GITHUB_ENV
+
+      - name: Send Webhook
+        run: python send_webhook.py
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          TEST_STATUS: ${{ env.TEST_STATUS }}
+
+  ios-test:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Appium
+        run: npm install -g appium
+
+      - name: Install Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run iOS Test
+        run: |
+          robot -d results Testcase/ios || echo "TEST_STATUS=FAILED" >> $GITHUB_ENV
+          echo "TEST_STATUS=PASSED" >> $GITHUB_ENV
+
+      - name: Send Webhook
+        run: python send_webhook.py
+        env:
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+          TEST_STATUS: ${{ env.TEST_STATUS }}
