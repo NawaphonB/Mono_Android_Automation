@@ -7,7 +7,7 @@ on:
 
 jobs:
   android-test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     timeout-minutes: 60
 
     steps:
@@ -43,26 +43,14 @@ jobs:
           target: google_apis
           arch: x86_64
           profile: Nexus 5
-          ram-size: 2048
-          heap-size: 512
-          disk-size: 2048M
-          emulator-options: -no-window -no-snapshot -noaudio -gpu swiftshader_indirect -no-boot-anim
           disable-animations: true
+          emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim
           script: |
-            echo "Restarting adb..."
-            adb kill-server
-            adb start-server
-
-            echo "Waiting for boot..."
             adb wait-for-device
 
-            boot_completed=""
-            until [[ "$boot_completed" == "1" ]]; do
-              boot_completed=$(adb shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')
+            until [[ "$(adb shell getprop sys.boot_completed | tr -d '\r')" == "1" ]]; do
               sleep 5
             done
-
-            echo "Emulator fully booted."
 
             echo "Starting Appium..."
             appium --base-path /wd/hub > appium.log 2>&1 &
