@@ -1,59 +1,118 @@
-name: Mobile Automation
+name: Android Robot CI
 
 on:
   push:
     branches: [ main ]
   schedule:
-    - cron: "*/5 * * * *"   # ทุก 5 นาที
+    - cron: "*/5 * * * *" # รันทุก 5 นาที (ระวัง quota)
 
 jobs:
-  android-test:
-    runs-on: ubuntu-latest   # 🔥 เปลี่ยนจาก macos เป็น ubuntu
+  android:
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # เปิด KVM เพื่อให้ Emulator ใช้ hardware acceleration (ถ้ามี)
+      - name: Enable KVM
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-kvm
+          if [ -e /dev/kvm ]; then
+            sudo chmod 666 /dev/kvm
+          else
+            echo "/dev/kvm not present, emulator will run in software mode."
+          fi
+
+      # ติดตั้ง Python
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: '3.11'
+          cache: 'pip'
 
-      - name: Install Dependencies
+      # ติดตั้ง Node.js สำหรับ Appium
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # ติดตั้ง Python dependencies
+      # - ถ้ามี requirements.txt จะใช้ตามนั้น
+      # - ถ้าไม่มี จะติดตั้งแพ็กเกจพื้นฐานที่ต้องใช้กับ Robot + Appium
+      - name: Install Python Requirements
         run: |
-          pip install -r requirement
-          npm install -g appium
+          if [ -f requirements.txt ]; then
+            python -m pip install --upgrade pip
+            pip install -r requirements.txt
+          else
+            python -m pip install --upgrade pip
+            pip install \
+              robotframework \
+              robotframework-appiumlibrary \
+              requests
+          fi
 
-      - name: Run Android Emulator + Test
+      # ติดตั้ง Appium และ driver uiautomator2
+      - name: Install Appium
+        run: |
+          npm i -g appium
+          appium -v
+          appium driver install uiautomator2
+
+      # รัน Emulator + สคริปต์ Robot
+      - name: Run Android Emulator + Robot
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 29
+          api-level: 30
+          arch: x86_64
           target: google_apis
-          arch: x86_64        # 🔥 Linux ใช้ x86_64
           profile: pixel
-          emulator-options: -no-window -no-snapshot -noaudio -no-boot-anim
+          # headless + เร่งความเร็วให้บูตเร็ว
+          emulator-options: -no-snapshot -no-window -noaudio -no-boot-anim -gpu swiftshader_indirect
           disable-animations: true
+          emulator-boot-timeout: 900
+          # สคริปต์นี้จะรันหลัง emulator พร้อมใช้งานแล้ว
           script: |
             adb wait-for-device
+
+            echo "Waiting for full boot..."
+            # รอจน sys.boot_completed = 1
             until [[ "$(adb shell getprop sys.boot_completed | tr -d '\r')" == "1" ]]; do
               sleep 5
             done
+            # รอให้ระบบสงบอีกนิด
+            sleep 10
 
-            echo "Starting Appium..."
+            adb devices
+            adb shell settings put global window_animation_scale 0
+            adb shell settings put global transition_animation_scale 0
+            adb shell settings put global animator_duration_scale 0
+
+            echo "Starting Appium server..."
+            # รันเบื้องหลัง + redirect log ไปที่ไฟล์ (อย่าใช้ HTML entities)
             appium --base-path /wd/hub > appium.log 2>&1 &
-            sleep 20
 
-            echo "Running Robot..."
+            # เผื่อเวลารอ server ขึ้น
+            sleep 25
+
+            echo "Running Robot tests..."
+            mkdir -p results
+            # ถ้าโฟลเดอร์ Testcase ไม่มี ให้ fail ชัดเจน
+            if [ ! -d "Testcase" ]; then
+              echo "ERROR: Testcase directory not found."
+              exit 1
+            fi
+
+            # เรียก Robot Framework
             robot -d results Testcase/ || true
 
       - name: Upload Results
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: robot-results
-          path: results/
-
-      - name: Send Webhook
-        run: python send_webhook.py
-        env:
-          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-          TEST_STATUS: ${{ job.status }}
+          path: |
+            results/
+            appium.log
