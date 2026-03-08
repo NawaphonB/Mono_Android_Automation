@@ -9,13 +9,13 @@ on:
 
 jobs:
   android:
+
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # เปิดใช้งาน KVM (ดูคำแนะนำเพิ่มเติมด้านล่าง)
       - name: Enable KVM
         run: |
           sudo apt-get update
@@ -30,6 +30,8 @@ jobs:
       - name: Install Python Dependencies
         run: |
           pip install -r requirements.txt
+          # ติดตั้ง requests เผื่อไว้สำหรับ script ส่ง webhook
+          pip install requests 
 
       - name: Install Appium
         run: |
@@ -53,19 +55,26 @@ jobs:
             echo "Starting Appium in background..."
             nohup appium --base-path /wd/hub > appium.log 2>&1 &
             
-            # รอให้ Appium เปิดพอร์ตเสร็จ
+            echo "Waiting for Appium to start..."
             sleep 15
             
             echo "Check Appium running..."
             ps -ef | grep appium || true
             
             echo "Running Robot Framework..."
-            robot -d results Testcase/ || true
-            
-            echo "Robot finished."
+            # รัน Robot Framework (ถ้ามีเทสพัง บรรทัดนี้จะส่ง Exit Code Error แต่เราจัดการด้วย if: always() ใน step ถัดไป)
+            robot -d results Testcase/
+
+      - name: Send Alert to Webhook
+        if: always() 
+        run: python send_alert.py 
+        env:
+
+          WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
 
       - name: Upload Results
         uses: actions/upload-artifact@v4
+        if: always() 
         with:
           name: robot-results
           path: results/
