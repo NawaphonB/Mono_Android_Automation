@@ -67,7 +67,7 @@ jobs:
 
       - name: Send Alert to Webhook
         if: always() 
-        run: python send_alert.py 
+        run: python send_webhook.py 
         env:
 
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
