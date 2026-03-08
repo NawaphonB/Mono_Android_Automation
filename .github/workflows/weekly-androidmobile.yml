@@ -1,91 +1,33 @@
-name: Android Robot CI
+name: Android Emulator Tests
 
 on:
   push:
-    branches: [ main ]
-
-  schedule:
-    - cron: "*/5 * * * *"
-
-  workflow_dispatch:
+    branches: [ "main" ] # หรือระบุ Branch ที่ต้องการ
 
 jobs:
-  android:
-    runs-on: ubuntu-latest
+  test:
+    # แนะนำให้ใช้ macos-latest เพราะรองรับ Hardware Acceleration ทำให้ Emulator ลื่นกว่า
+    runs-on: macos-latest 
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+    - name: Checkout Code
+      uses: actions/checkout@v4
 
-      # 🔥 Enable KVM
-      - name: Enable KVM
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y qemu-kvm
-          sudo chmod 666 /dev/kvm
+    - name: Set up JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17' # เปลี่ยนตามเวอร์ชัน Java ที่โปรเจกต์คุณใช้
+        distribution: 'temurin'
 
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Install Python Dependencies
-        run: |
-          pip install -r requirements.txt
-
-      - name: Install Appium
-        run: |
-          npm install -g appium
-          appium driver install uiautomator2
-
-      - name: Run Emulator + Robot
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 30
-          target: google_apis
-          arch: x86_64
-          profile: pixel
-          emulator-options: -no-window -noaudio -no-boot-anim -gpu swiftshader_indirect
-          disable-animations: true
-          emulator-boot-timeout: 900
-          script: |
-            echo "Restart adb..."
-            adb kill-server || true
-            adb start-server
-
-            echo "Wait for device..."
-            adb wait-for-device
-
-            echo "Waiting for boot completion..."
-            while [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" != "1" ]; do
-              sleep 5
-            done
-
-            echo "Emulator booted."
-            adb devices
-
-            echo "Unlock screen..."
-            adb shell input keyevent 82
-
-            echo "Disable animations..."
-            adb shell settings put global window_animation_scale 0.0
-            adb shell settings put global transition_animation_scale 0.0
-            adb shell settings put global animator_duration_scale 0.0
-
-            echo "Starting Appium..."
-            nohup appium --base-path /wd/hub > appium.log 2>&1 &
-            sleep 30
-
-            echo "Check Appium running..."
-            ps -ef | grep appium || true
-
-            echo "Running Robot Framework..."
-            robot -d results Testcase/ || true
-
-            echo "Robot finished."
-
-      - name: Upload Results
-        uses: actions/upload-artifact@v4
-        with:
-          name: robot-results
-          path: results/
+    - name: Run Android Emulator and Tests
+      uses: reactivecircus/android-emulator-runner@v2
+      with:
+        api-level: 29
+        target: default
+        arch: x86_64
+        profile: Nexus 6
+        # ตัว Action จะรอจนกว่าเครื่องจะบูทเสร็จและปิด Animation ให้เอง
+        # ดังนั้นใน script เราเขียนแค่คำสั่งรันเทสต์ได้เลย
+        script: |
+          echo "Emulator is ready! Running tests..."
+          ./gradlew connectedCheck

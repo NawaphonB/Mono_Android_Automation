@@ -2,55 +2,53 @@ import requests
 import os
 import xml.etree.ElementTree as ET
 
-webhook_url = os.getenv("WEBHOOK_URL")
+output_file = r"C:\Users\UsEr\Documents\GitHub\Mono_API_Sanity\Monoapi\results\output.xml"
+webhook_url =
 
-RESULT_PATH = "results/output.xml"
+tree = ET.parse(output_file)
+root = tree.getroot()
 
-def generate_summary():
-    if not os.path.exists(RESULT_PATH):
-        return "❌ No output.xml found. Test execution may have crashed."
+fail_count = 0
+total_count = 0
+failed_tests = []
 
-    tree = ET.parse(RESULT_PATH)
-    root = tree.getroot()
+# ✅ Each <test> is a test case
+for test in root.findall(".//test"):
+    total_count += 1
+    test_name = test.attrib.get("name", "Unnamed Test")
+    status_tag = test.find("./status")
+    if status_tag is not None and status_tag.attrib.get("status") == "FAIL":
+        fail_count += 1
+        # Extract error message from keyword or test failure
+        error_msg = status_tag.text.strip() if status_tag.text else "Unknown error"
+        # Also check for keyword errors within the test
+        keyword_errors = []
+        for kw in test.findall(".//kw"):
+            kw_status = kw.find("./status")
+            if kw_status is not None and kw_status.attrib.get("status") == "FAIL":
+                kw_name = kw.attrib.get("name", "Unknown Keyword")
+                kw_error = kw_status.text.strip() if kw_status.text else "Keyword error"
+                keyword_errors.append(f"🔴 {kw_name}: {kw_error}")
+        failed_tests.append({
+            "name": test_name,
+            "error": error_msg,
+            "keyword_errors": keyword_errors
+        })
 
-    total = 0
-    passed = 0
-    failed = 0
-    failed_tests = []
-
-    for test in root.iter("test"):
-        total += 1
-        status = test.find("status").attrib["status"]
-        name = test.attrib["name"]
-
-        if status == "PASS":
-            passed += 1
-        else:
-            failed += 1
-            failed_tests.append(name)
-
-    status_emoji = "✅" if failed == 0 else "❌"
-
-    message = (
-        f"{status_emoji} Weekly Mobile Automation Result\n\n"
-        f"Total: {total}\n"
-        f"Passed: {passed}\n"
-        f"Failed: {failed}\n\n"
-    )
-
-    if failed_tests:
-        message += "Failed Testcases:\n"
-        for test in failed_tests:
-            message += f"- {test}\n"
-
-    return message
-
-
-if webhook_url:
-    summary_text = generate_summary()
-    payload = {
-        "text": summary_text
+if fail_count > 0:
+    # Build detailed error message with keyword errors
+    failed_details = []
+    for test in failed_tests:
+        test_info = f"📌 *{test['name']}*\n"
+        test_info += f"   • Error: {test['error']}\n"
+        if test['keyword_errors']:
+            test_info += "   • Keyword Errors:\n"
+            for kw_error in test['keyword_errors']:
+                test_info += f"     {kw_error}\n"
+        failed_details.append(test_info)
+    
+    failed_list = "\n".join(failed_details)
+    message = {
+        "text": f"🚨 *Health Check Alert!*\n❌ {fail_count} test(s) failed out of {total_count}\n\n{failed_list}"
     }
-    requests.post(webhook_url, json=payload)
-else:
-    print("WEBHOOK_URL not set")
+    response = requests.post(webhook_url, data=json.dumps(message), headers={'Content-Type': 'application/json'})
