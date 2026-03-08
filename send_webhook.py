@@ -13,7 +13,7 @@ if not webhook_url:
 output_file = "results/output.xml" 
 
 if not os.path.exists(output_file):
-    print(f"❌ Error: Cannot find {output_file}")
+    print(f"❌ Error: Cannot find {output_file}. Ensure tests ran and generated the file.")
     sys.exit(1)
 
 tree = ET.parse(output_file)
@@ -48,19 +48,26 @@ for test in root.findall(".//test"):
 
 if fail_count > 0:
     failed_details = []
-    for test in failed_tests:
+    
+    MAX_SHOW = 5
+    
+    for test in failed_tests[:MAX_SHOW]:
         test_info = f"📌 *{test['name']}*\n"
         test_info += f"   • Error: {test['error']}\n"
+        
         if test['keyword_errors']:
-            test_info += "   • Keyword Errors:\n"
-            for kw_error in test['keyword_errors']:
+            for kw_error in test['keyword_errors'][:2]:
                 test_info += f"     {kw_error}\n"
         failed_details.append(test_info)
     
     failed_list = "\n".join(failed_details)
     
+    if fail_count > MAX_SHOW:
+        hidden_count = fail_count - MAX_SHOW
+        failed_list += f"\n...และมีอีก {hidden_count} Test Cases ที่พัง (กรุณาดูรายละเอียดในไฟล์ Report ที่ GitHub Actions Artifacts)"
+
     message = {
-        "text": f"🚨 *Health Check Alert!*\n❌ {fail_count} test(s) failed out of {total_count}\n\n{failed_list}"
+        "text": f"🚨 *Android Automation Alert!*\n❌ Failed: {fail_count} out of {total_count} tests\n\n{failed_list}"
     }
     
     try:
@@ -73,5 +80,7 @@ if fail_count > 0:
         print("✅ Alert sent to webhook successfully!")
     except requests.exceptions.RequestException as e:
         print(f"❌ Failed to send alert: {e}")
+        print(f"Payload sent:\n{json.dumps(message, ensure_ascii=False, indent=2)}")
+
 else:
     print(f"✅ All {total_count} tests passed. No alert sent.")
