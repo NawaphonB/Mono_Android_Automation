@@ -23,6 +23,17 @@ fail_count = 0
 total_count = 0
 failed_tests = []
 
+def clean_error_msg(msg):
+    if not msg:
+        return "Unknown error"
+    msg = msg.strip()
+    if "Stacktrace:" in msg:
+        msg = msg.split("Stacktrace:")[0].strip()
+    if len(msg) > 150:
+        msg = msg[:147] + "..."
+    msg = msg.replace('"', "'").replace('\n', ' ')
+    return msg
+
 for test in root.findall(".//test"):
     total_count += 1
     test_name = test.attrib.get("name", "Unnamed Test")
@@ -30,14 +41,14 @@ for test in root.findall(".//test"):
     
     if status_tag is not None and status_tag.attrib.get("status") == "FAIL":
         fail_count += 1
-        error_msg = status_tag.text.strip() if status_tag.text else "Unknown error"
+        error_msg = clean_error_msg(status_tag.text)
         
         keyword_errors = []
         for kw in test.findall(".//kw"):
             kw_status = kw.find("./status")
             if kw_status is not None and kw_status.attrib.get("status") == "FAIL":
                 kw_name = kw.attrib.get("name", "Unknown Keyword")
-                kw_error = kw_status.text.strip() if kw_status.text else "Keyword error"
+                kw_error = clean_error_msg(kw_status.text)
                 keyword_errors.append(f"🔴 {kw_name}: {kw_error}")
                 
         failed_tests.append({
@@ -48,7 +59,6 @@ for test in root.findall(".//test"):
 
 if fail_count > 0:
     failed_details = []
-    
     MAX_SHOW = 5
     
     for test in failed_tests[:MAX_SHOW]:
@@ -65,7 +75,7 @@ if fail_count > 0:
     if fail_count > MAX_SHOW:
         hidden_count = fail_count - MAX_SHOW
         failed_list += f"\n...และมีอีก {hidden_count} Test Cases ที่พัง (กรุณาดูรายละเอียดในไฟล์ Report ที่ GitHub Actions Artifacts)"
-
+    
     message = {
         "text": f"🚨 *Android Automation Alert!*\n❌ Failed: {fail_count} out of {total_count} tests\n\n{failed_list}"
     }
