@@ -1,33 +1,71 @@
-name: Android Emulator Tests
+name: Android Robot CI
 
 on:
   push:
-    branches: [ "main" ] # หรือระบุ Branch ที่ต้องการ
+    branches: [ main ]
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
 
 jobs:
-  test:
-    # แนะนำให้ใช้ macos-latest เพราะรองรับ Hardware Acceleration ทำให้ Emulator ลื่นกว่า
-    runs-on: macos-latest 
+  android:
+    runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout Code
-      uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
 
-    - name: Set up JDK
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17' # เปลี่ยนตามเวอร์ชัน Java ที่โปรเจกต์คุณใช้
-        distribution: 'temurin'
+      # เปิดใช้งาน KVM (ดูคำแนะนำเพิ่มเติมด้านล่าง)
+      - name: Enable KVM
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y qemu-kvm
+          sudo chmod 666 /dev/kvm || true
 
-    - name: Run Android Emulator and Tests
-      uses: reactivecircus/android-emulator-runner@v2
-      with:
-        api-level: 29
-        target: default
-        arch: x86_64
-        profile: Nexus 6
-        # ตัว Action จะรอจนกว่าเครื่องจะบูทเสร็จและปิด Animation ให้เอง
-        # ดังนั้นใน script เราเขียนแค่คำสั่งรันเทสต์ได้เลย
-        script: |
-          echo "Emulator is ready! Running tests..."
-          ./gradlew connectedCheck
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Python Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Install Appium
+        run: |
+          npm install -g appium
+          appium driver install uiautomator2
+
+      - name: Run Emulator + Robot
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          target: google_apis
+          arch: x86_64
+          profile: pixel
+          emulator-options: -no-window -noaudio -no-boot-anim -gpu swiftshader_indirect
+          disable-animations: true
+          emulator-boot-timeout: 900
+          script: |
+            echo "Emulator booted successfully by Action."
+            adb devices
+            
+            echo "Starting Appium in background..."
+            nohup appium --base-path /wd/hub > appium.log 2>&1 &
+            
+            # รอให้ Appium เปิดพอร์ตเสร็จ
+            sleep 15
+            
+            echo "Check Appium running..."
+            ps -ef | grep appium || true
+            
+            echo "Running Robot Framework..."
+            robot -d results Testcase/ || true
+            
+            echo "Robot finished."
+
+      - name: Upload Results
+        uses: actions/upload-artifact@v4
+        with:
+          name: robot-results
+          path: results/
