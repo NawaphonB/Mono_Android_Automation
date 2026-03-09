@@ -10,7 +10,6 @@ on:
 
 jobs:
   android:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -31,13 +30,27 @@ jobs:
       - name: Install Python Dependencies
         run: |
           pip install -r requirements.txt
-          # ติดตั้ง requests เผื่อไว้สำหรับ script ส่ง webhook
           pip install requests 
 
+      # 🔥 อัปเดต Step นี้: บังคับ Path การติดตั้ง Appium Driver ให้ชัดเจน
       - name: Install Appium
         run: |
+          echo "Installing Appium 2.x..."
           npm install -g appium
+          
+          echo "Setting APPIUM_HOME to a local directory..."
+          export APPIUM_HOME=$HOME/.appium
+          mkdir -p $APPIUM_HOME
+          
+          echo "Installing UiAutomator2 driver..."
           appium driver install uiautomator2
+          
+          echo "Listing installed drivers to verify:"
+          appium driver list --installed
+                                          
+      - name: Download APK
+        run: |
+          wget -q -O monomax.apk "https://drive.google.com/drive/folders/1jUsx7gc4RKQahiIncV3r24chRSyHxmHC?usp=drive_link"
 
       - name: Run Emulator + Robot
         uses: reactivecircus/android-emulator-runner@v2
@@ -54,6 +67,8 @@ jobs:
             adb devices
             
             echo "Starting Appium in background..."
+            # 🔥 อัปเดต: บอก Appium ว่า Driver ที่ลงไว้อยู่ตรงไหน
+            export APPIUM_HOME=$HOME/.appium
             nohup appium --base-path /wd/hub > appium.log 2>&1 &
             
             echo "Waiting for Appium to start..."
@@ -63,7 +78,6 @@ jobs:
             ps -ef | grep appium || true
             
             echo "Running Robot Framework..."
-            # รัน Robot Framework (ถ้ามีเทสพัง บรรทัดนี้จะส่ง Exit Code Error แต่เราจัดการด้วย if: always() ใน step ถัดไป)
             robot -d results Testcase/
 
       - name: Send Alert to Webhook
