@@ -32,8 +32,7 @@ jobs:
           pip install -r requirements.txt
           pip install requests 
 
-      # 🔥 อัปเดต Step นี้: บังคับ Path การติดตั้ง Appium Driver ให้ชัดเจน
-      - name: Install Appium
+      - name: Install Appium and Driver
         run: |
           echo "Installing Appium 2.x..."
           npm install -g appium
@@ -47,10 +46,10 @@ jobs:
           
           echo "Listing installed drivers to verify:"
           appium driver list --installed
-                                          
+
       - name: Download APK
         run: |
-          wget -q -O monomax.apk "https://drive.google.com/drive/folders/1jUsx7gc4RKQahiIncV3r24chRSyHxmHC?usp=drive_link"
+          wget -q -O monomax.apk "https://drive.google.com/file/d/1BV9CAPPyXXXYoIMvtFAggV0YM96uTnO_/view?usp=drive_link"
 
       - name: Run Emulator + Robot
         uses: reactivecircus/android-emulator-runner@v2
@@ -63,12 +62,13 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 900
           script: |
+            export NODE_PATH=$(npm root -g)
+            export APPIUM_HOME=$HOME/.appium
+            
             echo "Emulator booted successfully by Action."
             adb devices
             
             echo "Starting Appium in background..."
-            # 🔥 อัปเดต: บอก Appium ว่า Driver ที่ลงไว้อยู่ตรงไหน
-            export APPIUM_HOME=$HOME/.appium
             nohup appium --base-path /wd/hub > appium.log 2>&1 &
             
             echo "Waiting for Appium to start..."
