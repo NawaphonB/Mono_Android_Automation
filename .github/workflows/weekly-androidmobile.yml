@@ -2,7 +2,7 @@ name: Android Robot CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ phath-android ]
   schedule:
     # - cron: "*/5 * * * *"
     - "0 2 * * 1"
