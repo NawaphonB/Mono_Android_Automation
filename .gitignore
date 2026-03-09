@@ -66,3 +66,4 @@ ENV/
 .ipynb_checkpoints/
 *.mp4
 __pycache__/
+echo "*.apk"
