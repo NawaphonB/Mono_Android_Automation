@@ -4,7 +4,6 @@ on:
   push:
     branches: [ phath-android ]
   schedule:
-    # - cron: "*/5 * * * *"
     - cron: "0 2 * * 1"
   workflow_dispatch:
 
@@ -31,25 +30,25 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install requests 
+          pip install gdown 
 
       - name: Install Appium and Driver
         run: |
-          echo "Installing Appium 2.x..."
-          npm install -g appium
+          echo "Initializing a local Node project..."
+          npm init -y
           
-          echo "Setting APPIUM_HOME to a local directory..."
-          export APPIUM_HOME=$HOME/.appium
-          mkdir -p $APPIUM_HOME
+          echo "Installing Appium locally..."
+          npm install appium
           
           echo "Installing UiAutomator2 driver..."
-          appium driver install uiautomator2
+          npx appium driver install uiautomator2
           
           echo "Listing installed drivers to verify:"
-          appium driver list --installed
+          npx appium driver list --installed
 
       - name: Download APK
         run: |
-          wget -q -O monomax.apk "https://drive.google.com/file/d/1BV9CAPPyXXXYoIMvtFAggV0YM96uTnO_/view?usp=drive_link"
+          gdown 1BV9CAPPyXXXYoIMvtFAggV0YM96uTnO_ -O monomax.apk
 
       - name: Run Emulator + Robot
         uses: reactivecircus/android-emulator-runner@v2
@@ -62,14 +61,11 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 900
           script: |
-            export NODE_PATH=$(npm root -g)
-            export APPIUM_HOME=$HOME/.appium
-            
             echo "Emulator booted successfully by Action."
             adb devices
             
             echo "Starting Appium in background..."
-            nohup appium --base-path /wd/hub > appium.log 2>&1 &
+            nohup npx appium --base-path /wd/hub > appium.log 2>&1 &
             
             echo "Waiting for Appium to start..."
             sleep 15
