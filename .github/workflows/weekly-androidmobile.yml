@@ -5,7 +5,7 @@ on:
     branches: [ phath-android ]
   schedule:
     # - cron: "*/5 * * * *"
-    - "0 2 * * 1"
+    - cron: "0 2 * * 1"
   workflow_dispatch:
 
 jobs:
@@ -70,7 +70,6 @@ jobs:
         if: always() 
         run: python send_webhook.py 
         env:
-
           WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
 
       - name: Upload Results
