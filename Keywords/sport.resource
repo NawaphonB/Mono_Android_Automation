@@ -3,18 +3,18 @@ Resource    ../import.robot
 
 *** Keywords ***
 go to sport home
-    Wait Until Element Is Visible    ${sport_home}
+    Wait Until Element Is Visible    ${sport_home}    timeout=10s
     Click Element    ${sport_home}
     
 Click match live
-    Wait Until Element Is Visible    ${match_live}
+    Wait Until Element Is Visible    ${match_live}    timeout=10s
     Click Element   ${match_live}
 
 Player live
-    Wait Until Element Is Visible    ${player_live}
+    Wait Until Element Is Visible    ${player_live}    timeout=10s
 
 verified popup login
-    Wait Until Element Is Visible    ${popup_accept}
+    Wait Until Element Is Visible    ${popup_accept}    timeout=10s
     Click Element    ${popup_accept}
 
 page select package
@@ -22,20 +22,20 @@ page select package
     Click Element    ${back}
 
 verified popup buy package
-    Wait Until Element Is Visible    ${popup_accept}
+    Wait Until Element Is Visible    ${popup_accept}    timeout=10s
     Click Element    ${popup_accept}
 
 verified popup upgrade
-    Wait Until Element Is Visible    ${popup_accept}
+    Wait Until Element Is Visible    ${popup_accept}    timeout=10s
     Click Element    ${popup_accept}
 
 page package standard
-    Wait Until Element Is Visible    ${package_standard}
+    Wait Until Element Is Visible    ${package_standard}    timeout=10s
 
 click see more
-    Wait Until Element Is Visible    ${seemore}    
+    Wait Until Element Is Visible    ${seemore}    timeout=10s
     Click Element    ${seemore}
-    Wait Until Element Is Visible    ${enter_seemore}
+    Wait Until Element Is Visible    ${enter_seemore}    timeout=10s
 
 verified popup concurrent
     Wait Until Element Is Visible    ${concurrent}        timeout=10

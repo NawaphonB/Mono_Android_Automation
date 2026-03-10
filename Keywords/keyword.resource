@@ -18,18 +18,18 @@ Open monomax app
     ...    appium:uiautomator2ServerInstallTimeout=60000
 
 Go to login menu
-    Wait Until Element Is Visible      ${login_button}
+    Wait Until Element Is Visible      ${login_button}    timeout=10s
     Click Element    ${login_button}
 
 Input mono username
     [Arguments]     ${username}
-    Wait Until Element Is Visible      ${login_input_username}
+    Wait Until Element Is Visible      ${login_input_username}    timeout=10s
     Input Text      ${login_input_username}     ${username}
 
 Input mono password
     [Arguments]     ${password}
-    Wait Until Element Is Visible   ${login_input_password}
-    Input Text  ${login_input_password}     ${password}
+    Wait Until Element Is Visible   ${login_input_password}    timeout=10s
+    Input Text  ${login_input_password}     ${password}    
 
 Click login button
     Wait Until Element Is Visible   ${login_button_inside}    timeout=10s
@@ -41,19 +41,19 @@ verified login success
     Click Element    ${back}
 
 verified login fail   
-    Wait Until Element Is Visible    ${login_incorrect}
+    Wait Until Element Is Visible    ${login_incorrect}    timeout=10s
 
 Click skip go to home
-    Wait Until Element Is Visible    ${skip_login} 
+    Wait Until Element Is Visible    ${skip_login}    timeout=10s
     Click Element    ${skip_login}   
 
 click popup noti
-    Wait Until Element Is Visible    ${popup_noti}
+    Wait Until Element Is Visible    ${popup_noti}    timeout=10s
     Click Element    ${popup_noti}
 
 click allow noti
-    Wait Until Element Is Visible    ${allow_button}
+    Wait Until Element Is Visible    ${allow_button}    timeout=10s
     Click Element    ${allow_button}
 
 Click hamburger menu    
-    Click Element    ${Click-hamburger-menu}
+    Click Element    ${Click-hamburger-menu}    
