@@ -4,5 +4,5 @@
 # ${monomax1}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[6]/android.view.View
 
 # # internal
-${livetv_page}    //android.widget.FrameLayout[@content-desc="Live TV"]
+${livetv_page}    //android.widget.FrameLayout[@content-desc="ทีวีสด"]
 ${monomax1}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[8]/android.view.View

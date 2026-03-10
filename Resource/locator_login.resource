@@ -15,8 +15,8 @@ ${login_button}     //android.widget.Button[@resource-id="com.doonung.activity:i
 ${login_input_username}     //android.widget.ScrollView/android.widget.EditText[1]
 ${login_input_password}     //android.widget.ScrollView/android.widget.EditText[2]
 ${login_button_inside}     //android.widget.ScrollView/android.view.View[1]/android.widget.Button
-${choose_profile_manage}    //android.widget.TextView[@text="Choose profile"]
-${back}    //android.widget.ImageButton[@content-desc="Navigate up"]
+${choose_profile_manage}    //android.widget.TextView[@text="เลือกผู้รับชม"]
+${back}    //android.widget.ImageButton[@content-desc="กลับ"] 
 ${login_incorrect}     //android.widget.ImageView[@content-desc="warning"]
 ${skip_login}    //android.widget.Button[@resource-id="com.doonung.activity:id/mb_onboarding_skip_button"]
 ${TIMEOUT}    10s
