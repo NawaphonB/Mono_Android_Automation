@@ -51,10 +51,12 @@ Click skip go to home
 
 click popup noti
     Wait Until Element Is Visible    ${popup_noti}    timeout=10s
+    Sleep    2s
     Click Element    ${popup_noti}
 
 click allow noti
     Wait Until Element Is Visible    ${allow_button}    timeout=10s
+    Sleep    2s
     Click Element    ${allow_button}
 
 Click hamburger menu    
