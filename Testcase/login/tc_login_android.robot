@@ -5,21 +5,21 @@ Resource    ../../import.robot
 LN_001 Success-Login success with E-mail
     [Tags]    done
     Click login
-    Start Screen Recording
+    # Start Screen Recording
     login by username:${LN_001.username} and password:${LN_001.password}
     page select package
     verified login success
-    Stop Screen Recording    filename=LN_001 (Android ver.8.10.1 (894)).mp4
+    # Stop Screen Recording    filename=LN_001 (Android ver.8.10.1 (894)).mp4
     Close Application
 
 LN_002 Success-Login success with mobile
     [Tags]    done
     Click login
-    Start Screen Recording
+    # Start Screen Recording
     login by username:${LN_002.username} and password:${LN_002.password}
     page select package
     verified login success
-    Stop Screen Recording    filename=LN_002 (Android ver.8.10.1 (894)).mp4
+    # Stop Screen Recording    filename=LN_002 (Android ver.8.10.1 (894)).mp4
     Close Application
 
 LN_005 Login with multiple package success

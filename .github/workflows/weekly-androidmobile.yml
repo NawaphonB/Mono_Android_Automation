@@ -74,7 +74,7 @@ jobs:
             ps -ef | grep appium || true
             
             echo "Running Robot Framework..."
-            robot -d results Testcase/
+            robot -d results -e not_ready Testcase/
 
       - name: Send Alert to Webhook
         if: always() 

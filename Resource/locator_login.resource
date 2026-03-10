@@ -12,9 +12,9 @@
 
 # # internal
 ${login_button}     //android.widget.Button[@resource-id="com.doonung.activity:id/mb_onboarding_login_button"]
-${login_input_username}     //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.widget.EditText[1]
-${login_input_password}     //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.widget.EditText[2]
-${login_button_inside}     //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.widget.Button
+${login_input_username}     //android.widget.ScrollView/android.widget.EditText[1]
+${login_input_password}     //android.widget.ScrollView/android.widget.EditText[2]
+${login_button_inside}     //android.widget.ScrollView/android.view.View[1]/android.widget.Button
 ${choose_profile_manage}    //android.widget.TextView[@text="Choose profile"]
 ${back}    //android.widget.ImageButton[@content-desc="Navigate up"]
 ${login_incorrect}     //android.widget.ImageView[@content-desc="warning"]
