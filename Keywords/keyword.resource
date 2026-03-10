@@ -3,7 +3,8 @@ Resource    ../import.robot
 
 *** Keywords ***
 Open monomax app    
-    Open Application    
+    Open Application   
+    # ...    http://127.0.0.1:4723
     ...    http://127.0.0.1:4723/wd/hub
     ...    platformName=Android    
     ...    appium:platformVersion=11.0    
