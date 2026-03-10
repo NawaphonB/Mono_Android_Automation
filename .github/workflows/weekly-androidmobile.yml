@@ -48,7 +48,7 @@ jobs:
 
       - name: Download APK
         run: |
-          gdown 1BV9CAPPyXXXYoIMvtFAggV0YM96uTnO_ -O monomax.apk
+          gdown 1c_kb9iS8OsXII8EX-hy24W74o90O0TSj -O monomax.apk
 
       - name: Run Emulator + Robot
         uses: reactivecircus/android-emulator-runner@v2
