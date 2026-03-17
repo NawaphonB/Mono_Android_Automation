@@ -51,7 +51,7 @@ Click skip go to home
 
 click popup noti
     Wait Until Element Is Visible    ${popup_noti}    timeout=10s
-    Sleep    2s
+    Sleep    5s
     Click Element    ${popup_noti}
 
 click allow noti
