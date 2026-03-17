@@ -4,12 +4,12 @@ Resource    ../import.robot
 *** Keywords ***
 Open monomax app    
     Open Application   
-    # ...    http://127.0.0.1:4723
-    ...    http://127.0.0.1:4723/wd/hub
+    ...    http://127.0.0.1:4723
+    # ...    http://127.0.0.1:4723/wd/hub
     ...    platformName=Android    
     ...    appium:platformVersion=11.0    
     ...    appium:deviceName=Test Device    
-    ...    appium:app=${EXECDIR}/monomax.apk
+    # ...    appium:app=${EXECDIR}/monomax.apk
     # ...    appium:appPackage=com.doonung.activity.staging    
     ...    appium:appPackage=com.doonung.activity
     ...    appium:appActivity=com.doonung.activity.mobile.ui.activity.splash.MBSplashActivity

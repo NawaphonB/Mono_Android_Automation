@@ -5,4 +5,4 @@
 
 # # internal
 ${livetv_page}    //android.widget.FrameLayout[@content-desc="ทีวีสด"]
-${monomax1}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[8]/android.view.View
+${monomax1}    //android.widget.TextView[@text="LFCTV"]

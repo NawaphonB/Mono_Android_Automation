@@ -16,7 +16,7 @@
 
 
 # internal
-${sport_home}    //android.widget.FrameLayout[@content-desc="Sport"]
+${sport_home}    //android.widget.FrameLayout[@content-desc="กีฬา"]
 ${match_live}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[5]/android.view.View[1]
 ${popup_noti}    //android.widget.Button[@resource-id="android:id/button1"]
 ${allow_button}    //android.widget.Button[@resource-id="com.android.permissioncontroller:id/permission_allow_button"]
@@ -25,5 +25,5 @@ ${upcoming_day}    //android.widget.TextView[@text="day"]
 ${upcoming_days}    //android.widget.TextView[@text="days"]
 ${player_live}    //android.widget.TextView[@text="LIVE"]
 ${seemore}    //android.widget.Button
-${enter_seemore}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[3]/android.view.View
+${enter_seemore}    //androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]/android.view.View[4]/android.widget.Button
 ${concurrent}    //android.widget.TextView[@resource-id="com.doonung.activity:id/tv_error_title"]
